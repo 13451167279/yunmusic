@@ -1,0 +1,10 @@
+{
+  "pages": [
+    "pages/index/index"
+  ],
+  "window": {
+    "navigationBarBackgroundColor": "#D43C33",
+    "navigationBarTextStyle": "white",
+    "navigationBarTitleText": "云音乐"
+  }
+}
