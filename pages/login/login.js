@@ -37,9 +37,9 @@ Page({
     }
     const res = await request('/login/cellphone', {
       phone,
-      password
+      password,
+      isLogin: true
     })
-    console.log(res);
     if (res.code === 200) {
       wx.setStorageSync('userInfo_key', res.profile)
       wx.reLaunch({

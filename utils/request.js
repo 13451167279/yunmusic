@@ -6,7 +6,13 @@ function request(path, data = {}, method = 'GET') {
       url: config.host + path,
       method,
       data,
+      header: {
+        cookie: wx.getStorageSync('cookies_key') && wx.getStorageSync('cookies_key').find(item => item.startsWith('MUSIC')),
+      },
       success: (res) => {
+        if (data.isLogin) {
+          wx.setStorageSync('cookies_key', res.cookies)
+        }
         resolve(res.data);
       },
       fail: err => {

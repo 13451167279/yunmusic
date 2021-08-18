@@ -1,2 +1,19 @@
-<!--pages/video/video.wxml-->
-<text>pages/video/video.wxml</text>
+<view class="videoContainer">
+  <!-- 视频头部 -->
+  <view class="header">
+    <image src="../../static/images/video/video.jpg" alt=""></image>
+    <text class="search">搜索音乐</text>
+    <image src="../../static/images/favicon.ico" alt=""></image>
+  </view>
+  <!-- 视频nav导航 -->
+  <scroll-view class="navScroll" scroll-into-view="{{'scroll'+navId}}" enable-flex scroll-x>
+    <view bindtap="cangeNav" data-id='{{item.id}}' id="{{'scroll'+item.id}}"
+      class="navItem {{navId === item.id && 'active'}}" wx:for="{{navList}}" wx:key='id'>{{item.name}}</view>
+  </scroll-view>
+  <!-- 视频 -->
+  <scroll-view class="videoScroll" scroll-y enable-flex>
+    <view class="videoItem" wx:for="{{videoList}}" wx:key='vid'>
+      <video src="{{item.urlInfo.url}}" class="video"></video>
+    </view>
+  </scroll-view>
+</view>

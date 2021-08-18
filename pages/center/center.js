@@ -50,7 +50,6 @@ Page({
       uid,
       type: 0
     });
-    console.log(res);
     if (res.code === 200) {
       this.setData({
         recordList: res.allData.slice(0, 20).map(item => item.song.al),

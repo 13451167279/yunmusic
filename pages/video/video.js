@@ -1,18 +1,54 @@
 // pages/video/video.js
+import request from '../../utils/request'
 Page({
+
+
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    navList: [],
+    navId: '',
+    videoList: [],
+  },
+  // 获取导航名称
+  async getNavList() {
+    const res = await request('/video/group/list');
+    if (res.code === 200) {
+      this.setData({
+        navList: res.data.slice(0, 20),
+        navId: res.data[0].id
+      })
+    }
+  },
+  // 获取视频列表
+  async getVideoList() {
+    const res = await request('/video/group', {
+      id: this.data.navId,
+    });
+    if (res.code === 200) {
+      this.setData({
+        videoList: res.datas.map(item => item.data)
+      })
+    }
+  },
+  // 切换导航
+  cangeNav(event) {
+    this.setData({
+      // navId: event.currentTarget.id * 1,
+      navId: event.currentTarget.dataset.id * 1,
+    })
+    this.getVideoList();
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
-
+  onLoad: async function (options) {
+    const userInfo = wx.getStorageSync('userInfo_key')
+    await this.getNavList();
+    userInfo && userInfo.nickname && this.data.navId && this.getVideoList();
   },
 
   /**
