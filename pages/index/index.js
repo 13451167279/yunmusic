@@ -1,18 +1,65 @@
 // pages/index/index.js
+import request from '../../utils/request'
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
+    bannerList: [],
+    recommendList: [],
+    rankList: []
+  },
 
+  async getBannerList() {
+    const result = await request('/banner', {
+      type: 2
+    })
+    if (result.code === 200) {
+      // console.log(result)
+      this.setData({
+        bannerList: result.banners
+      })
+    }
+  },
+
+  async getRecommendList() {
+    const res = await request('/personalized', {
+      limit: 25
+    });
+    if (res.code === 200) {
+      this.setData({
+        recommendList: res.result,
+      })
+    }
+  },
+  async getRankList() {
+    let index = 0;
+    const rankList = [];
+    while (index < 6) {
+      const res = await request('/top/list', {
+        idx: index++
+      });
+      if (res.code === 200) {
+        rankList.push({
+          id: res.playlist.id,
+          name: res.playlist.name,
+          tracks: res.playlist.tracks.splice(0, 3)
+        })
+      }
+      this.setData({
+        rankList,
+      })
+    }
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    this.getBannerList();
+    this.getRecommendList();
+    this.getRankList();
   },
 
   /**

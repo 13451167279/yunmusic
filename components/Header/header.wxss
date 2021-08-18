@@ -1,0 +1,19 @@
+/* 头部标题 */
+.header .title {
+  font-size: 28rpx;
+  color: #888888;
+  line-height: 80rpx;
+}
+.header .headerText {
+  display: flex;
+  justify-content: space-between;
+}
+.header .headerText .textright {
+  width: 150rpx;
+  height: 60rpx;
+  border-radius: 30rpx;
+  border: 2rpx solid #888888;
+  text-align: center;
+  line-height: 60rpx;
+  font-size: 26rpx;
+}

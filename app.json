@@ -1,10 +1,36 @@
 {
   "pages": [
-    "pages/index/index"
+    "pages/index/index",
+    "pages/center/center",
+    "pages/video/video",
+    "pages/login/login"
   ],
   "window": {
     "navigationBarBackgroundColor": "#D43C33",
     "navigationBarTextStyle": "white",
     "navigationBarTitleText": "云音乐"
-  }
+  },
+  "tabBar": {
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "首页",
+        "iconPath": "./static/images/tabs/tab-home.png",
+        "selectedIconPath": "./static/images/tabs/tab-home-current.png"
+      },
+      {
+        "pagePath": "pages/video/video",
+        "text": "视频",
+        "iconPath": "./static/images/tabs/select.png",
+        "selectedIconPath": "./static/images/tabs/selected.png"
+      },
+      {
+        "pagePath": "pages/center/center",
+        "text": "个人中心",
+        "iconPath": "./static/images/tabs/center.png",
+        "selectedIconPath": "./static/images/tabs/center-active.png"
+      }
+    ]
+  },
+  "sitemapLocation": "sitemap.json"
 }
