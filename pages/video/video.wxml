@@ -1,0 +1,21 @@
+<view class="videoContainer">
+  <!-- 搜素栏 -->
+  <view class="header">
+    <image src="../../static/images/video/video.jpg"></image>
+    <text class="search">点我搜索</text>
+    <image src="../../static/images/logo.png"></image>
+  </view>
+  <!-- 导航 -->
+  <scroll-view class="scroll" enable-flex scroll-x scroll-into-view="{{'scroll'+navId}}">
+    <view class="scrollItem" wx:for="{{groupList}}" wx:key='id' bindtap="changeId">
+      <text class="scrollText {{navId === item.id ? 'active':''}}" data-id="{{item.id}}"
+        id="{{'scroll'+navId}}">{{item.name}}</text>
+    </view>
+  </scroll-view>
+  <!-- 视频 -->
+  <scroll-view class="videoScroll" enable-flex scroll-y>
+    <view class="scrollItem" wx:for="{{videoList}}" wx:key="vid">
+      <video src="{{item.urlInfo.url}}"></video>
+    </view>
+  </scroll-view>
+</view>
